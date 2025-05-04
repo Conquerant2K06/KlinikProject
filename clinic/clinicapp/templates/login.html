@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de connexion stylisée</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="login-card">
+        <!-- Partie gauche avec illustration -->
+        <div class="login-left">
+            <div class="circle-bg">
+                <img src="{% static 'img/login.jpg' %}" alt="Illustration femme" class="illustration">
+                <div class="plant plant-1"></div>
+                <div class="plant plant-2"></div>
+                <div class="plant plant-3"></div>
+            </div>
+            
+            <p class="footer-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            </p>
+        </div>
+        
+        <!-- Partie droite avec formulaire -->
+        <div class="login-right">
+            <div class="welcome-pill">Welcome back</div>
+            
+            <h4 class="login-title">Login your account</h4>
+            
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label text-muted">Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="password" class="form-label text-muted">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                
+                <button type="submit" class="login-btn">Login</button>
+                
+                <div class="create-account">Create Account</div>
+                
+                <div class="forgot-password">Forgot Password?</div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-credit">designed by ♥ freepik</div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

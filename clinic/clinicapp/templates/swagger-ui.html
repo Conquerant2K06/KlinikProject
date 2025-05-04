@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Klinik API Documentation</title>
+    <!-- Inclure les styles de Swagger -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css">
+    <!-- Inclure Font Awesome pour des icônes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Styles personnalisés -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+        }
+        .swagger-ui .topbar {
+            background-color: #0d6efd; /* Couleur primaire Bootstrap */
+            padding: 10px 0;
+        }
+        .swagger-ui .topbar .download-url-wrapper {
+            display: none; /* Masquer le téléchargement d'URL */
+        }
+        .swagger-ui .topbar a {
+            display: flex;
+            align-items: center;
+            color: white !important;
+        }
+        .swagger-ui .info {
+            margin: 50px 0;
+            text-align: center;
+        }
+        .swagger-ui .info .title {
+            color: #0d6efd;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .swagger-ui .info .description {
+            color: #333;
+            font-size: 18px;
+        }
+        .swagger-ui .scheme-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .swagger-ui .opblock-tag {
+            background-color: #ffffff;
+            border-left: 5px solid #0d6efd;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        .swagger-ui .opblock {
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .swagger-ui .opblock-summary-method {
+            background-color: #0d6efd !important;
+        }
+        .swagger-ui .opblock-summary-path a {
+            color: #333 !important;
+            font-weight: 500;
+        }
+        .swagger-ui .btn.authorize {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .swagger-ui .btn.authorize:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div id="swagger-ui"></div>
+    <!-- Inclure les scripts de Swagger -->
+    <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: "{{ request.scheme }}://{{ request.get_host }}/api/docs/schema/",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                // Désactiver le "Try it out" si vous ne voulez pas que les utilisateurs testent directement
+                tryItOutEnabled: false,
+                showExtensions: true,
+                showCommonExtensions: true,
+            });
+            window.ui = ui;
+        };
+    </script>
+</body>
+</html>

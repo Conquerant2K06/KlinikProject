@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déconnexion | Mon Site</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <div class="container text-center">
+        <div class="card shadow-lg p-4 border-0" style="max-width: 500px; margin: auto;">
+            <div class="card-body">
+                <img src="{% static 'img/Disconnected.jpg' %}" 
+                alt="Déconnexion" class="img-fluid mb-4" style="max-width: 80%;">
+                <h1 class="text-danger">Déconnexion réussie 🔒</h1>
+                <p class="text-muted">Vous avez été déconnecté avec succès.</p>
+                <a href="{% url 'login' %}" class="btn btn-primary mt-3">Se reconnecter</a>
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary mt-3">Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

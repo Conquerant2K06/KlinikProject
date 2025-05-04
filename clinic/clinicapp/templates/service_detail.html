@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Template Stylesheet (assurez-vous que style.css existe dans votre projet) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/service.css' %}">
+    
+        
+ </head>
+ <body>
+    <!-- Page Header Start -->
+    <div class="service-header wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <h1 class="display-4 animated slideInDown">{{ service.name }}</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'index' %}">Accueil</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'services' %}">Services</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">{{ service.name }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Service Details Start -->
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <!-- Image illustrative -->
+            <div class="col-lg-6 wow zoomIn" data-wow-delay="0.3s">
+                <div class="position-relative overflow-hidden rounded-3 shadow-sm">
+                    <img src="{% static 'img/service.jpg' %}" 
+                         class="img-fluid service-image transition-effect" 
+                         alt="{{ service.name }}"
+                         onerror="this.src='https://source.unsplash.com/600x400/?{{ service.name|lower }},medical';">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3 bg-dark bg-opacity-50 text-white text-center">
+                        <small>Image illustrative de {{ service.name }}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Détails du service -->
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.5s">
+                <div class="d-flex flex-column align-items-start">
+                    <i class="fa {{ service.icon_class }} text-primary service-icon animated bounceIn"></i>
+                    <h2 class="mb-3">{{ service.name }}</h2>
+                    <p class="lead mb-4">{{ service.description }}</p>
+                    <div class="d-flex gap-3">
+                        <a href="{% url 'services' %}" class="btn btn-outline-primary px-4 py-2 animated zoomIn">Retour aux Services</a>
+                        <a href="{% url 'appointment' %}" class="btn btn-primary px-4 py-2 animated zoomIn">Prendre un Rendez-vous</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service Details End -->
+
+    <!-- CTA Section Start -->
+    <div class="container py-5">
+        <div class="cta-section wow fadeInUp" data-wow-delay="0.1s">
+            <h3 class="mb-3">Besoin de soins spécialisés ?</h3>
+            <p class="mb-4">Nos experts sont là pour vous offrir les meilleurs soins médicaux. Prenez rendez-vous dès aujourd'hui !</p>
+            <a href="{% url 'appointment' %}" class="btn btn-primary btn-lg animated pulse">Réserver Maintenant</a>
+        </div>
+    </div>
+    <!-- CTA Section End -->
+
+ {% block js %}
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <!-- Initialize WOW.js -->
+    <script>
+        new WOW().init();
+    </script>
+ {% endblock js %}
+{% endblock content %}
+</body>
+</html>
